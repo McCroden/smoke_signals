@@ -27,7 +27,7 @@ class SmokeSignals
     self.room_name ||= settings["room"]
     return if room_name.nil?
     logger.debug("Campfire Notifier configured with #{settings.inspect}")
-    campfire = Tinder::Campfire.new(settings["subdomain"], :ssl => settings["use_ssl"])
+    campfire = Tinder::Campfire.new(settings["subdomain"], :ssl => settings["use_ssl"], :proxy => settings["proxy"])
     campfire.login settings["login"], settings["password"]
     logger.debug("Logged in to campfire #{settings['subdomain']} as #{settings['login']}")
     campfire.find_room_by_name(room_name)
